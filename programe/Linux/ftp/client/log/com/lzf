@@ -1,0 +1,61 @@
+07-17-2016/15:50:29|--lzf pwd  --/home/lzf
+07-17-2016/15:50:30|--lzf pwd  --/home/lzf
+07-17-2016/15:50:32|--lzf ls  --/home/lzf
+07-17-2016/15:50:37|--lzf cd ln --/home/lzf
+07-17-2016/15:50:39|--lzf cd linux --/home/lzf
+07-17-2016/15:50:40|--lzf ls  --/home/lzf/linux
+07-17-2016/23:27:18|--lzf pwd  --/home/lzf
+07-17-2016/23:27:20|--lzf ls  --/home/lzf
+07-17-2016/23:27:23|--lzf cd linux --/home/lzf
+07-17-2016/23:27:25|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:32:03|--lzf pwd  --/home/lzf
+07-17-2016/23:32:04|--lzf   --/home/lzf
+07-17-2016/23:32:06|--lzf ls  --/home/lzf
+07-17-2016/23:33:18|--lzf cd linux --/home/lzf
+07-17-2016/23:33:19|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:33:22|--lzf ls / --/home/lzf/linux
+07-17-2016/23:34:52|--lzf ls  --/home/lzf/linux
+07-17-2016/23:35:02|--lzf pwd  --/home/lzf
+07-17-2016/23:35:03|--lzf ls  --/home/lzf
+07-17-2016/23:35:05|--lzf ls  --/home/lzf
+07-17-2016/23:35:05|--lzf lls  --/home/lzf
+07-17-2016/23:35:06|--lzf ls  --/home/lzf
+07-17-2016/23:35:07|--lzf ls  --/home/lzf
+07-17-2016/23:35:09|--lzf cdlinux  --/home/lzf
+07-17-2016/23:35:11|--lzf cd linux --/home/lzf
+07-17-2016/23:35:12|--lzf ls  --/home/lzf/linux
+07-17-2016/23:35:13|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:36:16|--lzf pwd  --/home/lzf
+07-17-2016/23:36:18|--lzf ls  --/home/lzf
+07-17-2016/23:42:15|--lzf pwd  --/home/lzf
+07-17-2016/23:42:16|--lzf ls  --/home/lzf
+07-17-2016/23:42:20|--lzf ls  --/home/lzf
+07-17-2016/23:42:22|--lzf pwd  --/home/lzf
+07-17-2016/23:42:24|--lzf ls  --/home/lzf
+07-17-2016/23:42:49|--lzf ls  --/home/lzf
+07-17-2016/23:42:56|--lzf pwd  --/home/lzf
+07-17-2016/23:43:02|--lzf cd linux --/home/lzf
+07-17-2016/23:43:04|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:43:43|--lzf pwd  --/home/lzf
+07-17-2016/23:43:46|--lzf ls  --/home/lzf
+07-17-2016/23:43:48|--lzf cd linux --/home/lzf
+07-17-2016/23:43:50|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:45:55|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:46:01|--lzf cd ftp --/home/lzf/linux
+07-17-2016/23:46:03|--lzf ls  --/home/lzf/linux/ftp
+07-17-2016/23:46:06|--lzf pwd  --/home/lzf/linux/ftp
+07-17-2016/23:46:35|--lzf pwd  --/home/lzf
+07-17-2016/23:46:37|--lzf ls  --/home/lzf
+07-17-2016/23:46:39|--lzf cd linux --/home/lzf
+07-17-2016/23:46:41|--lzf pwd  --/home/lzf/linux
+07-17-2016/23:47:08|--lzf pwd  --/home/lzf
+07-17-2016/23:47:11|--lzf cd linux --/home/lzf
+07-17-2016/23:47:14|--lzf cd client --/home/lzf/linux
+07-17-2016/23:47:19|--lzf cd ftp --/home/lzf/linux
+07-17-2016/23:47:20|--lzf ls  --/home/lzf/linux/ftp
+07-17-2016/23:47:24|--lzf cd lint[2~ --/home/lzf/linux/ftp
+07-17-2016/23:47:28|--lzf cd lient --/home/lzf/linux/ftp
+07-17-2016/23:47:34|--lzf cd clienyyt --/home/lzf/linux/ftp
+07-17-2016/23:47:39|--lzf cd cliet --/home/lzf/linux/ftp
+07-17-2016/23:47:43|--lzf cd client --/home/lzf/linux/ftp
+07-17-2016/23:47:44|--lzf pwd  --/home/lzf/linux/ftp/client

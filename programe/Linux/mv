@@ -1,0 +1,6 @@
+#!/bin/bash
+
+datename=`date -d "0 week" +%Y%m%d`
+echo $datename
+cp -rf  $datename.zip /home/masnail/learngit/homework/Linux/
+echo "move is done!"

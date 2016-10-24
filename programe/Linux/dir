@@ -1,0 +1,112 @@
+#########################################################################
+# Author: MASnail
+# Created Time: 2016å¹?6æœ?4æ—?æ˜ŸæœŸäº?21æ—?7åˆ?2ç§?
+# File Name: cpdir.sh
+# Description: 
+#########################################################################
+#!/bin/bash
+
+datename=`date -d "0 week" +%Y%m%d`
+
+function create_dir()
+{
+	if [ ! -f $datename ];
+	then 
+	mkdir $datename
+	fi
+	
+	chmod 755 $datename 
+	cd $datename
+
+	if [ ! -f homework ];
+	then mkdir homework
+	fi
+	
+	chmod  755 homework
+	echo "create today file"
+}
+# create the dir and file
+
+function create_work()
+{
+	echo "intput a count of you want create dir and file:"
+
+	read cnt
+	filename=000
+	index=0
+
+	if [ $cnt -gt 0 ];
+	then
+		cd $datename
+		cd homework
+
+		while [ $cnt -gt $index ] 
+		do
+			let "index++"
+			if [ $index -lt 10 ];
+			then filename="00$index"
+			else filename="0$index"
+			fi
+			
+			if [ ! -f $filename ];
+			then mkdir ${filename} 
+			fi
+		
+			if [ ! -f $filename/$filename.c ];
+			then touch ${filename}/${filename}.c
+				chmod 755  $filename/$filename.c
+			fi
+
+		echo "create the $filename is Sucessful !"
+
+		done
+
+	else
+		echo "the count is small !"
+	fi
+
+	echo "create homework is done !"
+}
+
+function cpmv_file(){
+	if [   -f $datename ];
+	then echo "the $datename not have ,run is error !"
+	exit 1
+	fi
+
+	cd $datename
+
+	if [  -f homework ];
+	then	echo "the homework not have ,run is error !"
+	exit 1
+	fi
+
+	cd homework
+
+	mkdir $datename
+	cp -rf  0* $datename
+	tar -cvf $datename.zip $datename
+	cp $datename.zip /home/masnail/learngit/homework/Linux/
+	mv $datename.zip /lzf/
+	cp dir /home/masnail/learngit/homework/Linux/
+	rm -rf $datename
+
+	echo "move file is done ! "
+}
+
+
+echo "1/create  today file"
+echo "2/create homework file"
+echo "3/tar && move homework"
+
+read a
+
+if [ $a -eq 1 ];
+then create_dir $datename;
+fi
+if [ $a -eq 2 ];
+then create_work $datename;
+fi
+if [ $a -eq 3 ];
+then cpmv_file $datename;
+fi
