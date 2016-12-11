@@ -59,7 +59,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@Ubuntu:\w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@Ubuntu:\w\]$PS1"
     ;;
 *)
     ;;
@@ -73,8 +73,8 @@ if [ -x /usr/bin/dircolors ]; then
     #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
-#    alias fgrep='fgrep --color=auto'
- #   alias egrep='egrep --color=auto'
+  #  alias fgrep='fgrep --color=auto'
+  #  alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -99,5 +99,5 @@ fi
 #fi
 
 #export PS1="\[\e[32;1m\][\u@Ubuntu/ \W\a]#>\[\e[0m\]"
-export PS1="\[\e[32;1m\][\u@Ubuntu/ \W]#>\[\]"
+export PS1="\[\e[32;1m\][\u@Ubuntu/ \W]$>\[\e[0m\]"
 #export PS1='[\u@\h \w]\$'
