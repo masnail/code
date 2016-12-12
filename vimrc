@@ -13,7 +13,10 @@ call vundle#rc()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
+
+Plugin 'Valloric/YouCompleteMe'
+
+"Plugin 'scrooloose/syntastic'
 
 call vundle#end()
 filetype plugin indent on

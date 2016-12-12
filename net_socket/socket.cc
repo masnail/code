@@ -1,14 +1,14 @@
 /*************************************************************************
  Author:MASnail
  Created Time: 2016年07月08日 星期五 13时55分42秒
- File Name: socket.c
+ File Name: socket.h
  Description: 
  ************************************************************************/
 
 #include "socket.h"
 
 
-void socket_server_tcp(int *fd_sock,int port,char *ipchar,int concnt)
+void socket_server_tcp(int *fd_sock,int port,/*char *ipchar,*/int concnt)
 {
 	*fd_sock = socket(AF_INET,SOCK_STREAM,0);
 	if(-1 == *fd_sock)
@@ -24,7 +24,7 @@ void socket_server_tcp(int *fd_sock,int port,char *ipchar,int concnt)
 	memset(&ip_addr,0,sizeof(ip_addr));
 	ip_addr.sin_family=AF_INET;
 	ip_addr.sin_port=htons(port);
-	ip_addr.sin_addr.s_addr=inet_addr(ipchar);//INADDR_ANY;
+	ip_addr.sin_addr.s_addr=/*inet_addr(ipchar);*/htonl(INADDR_ANY);
 
 	int ret;
 	ret = bind(*fd_sock,(struct sockaddr*)&ip_addr,sizeof(struct sockaddr));
@@ -71,7 +71,7 @@ void socket_client_tcp(int *fd_sock,int port,char *ipchar)
 	memset(&ip_addr,0,sizeof(ip_addr));
 	ip_addr.sin_family=AF_INET;
 	ip_addr.sin_port=htons(port);
-	ip_addr.sin_addr.s_addr=inet_addr(ipchar);//INADDR_ANY;
+	ip_addr.sin_addr.s_addr=inet_addr(ipchar);
 	
 	int ret;
 	ret = connect(*fd_sock,(struct sockaddr*)&ip_addr,sizeof(struct sockaddr));
@@ -84,7 +84,7 @@ void socket_client_tcp(int *fd_sock,int port,char *ipchar)
 }
 
 
-void socket_server_udp(int *fd_sock,int port,char *ipchar)
+void socket_server_udp(int *fd_sock,int port)
 {
 	*fd_sock = socket(AF_INET,SOCK_DGRAM,0);
 	if(-1 == *fd_sock)
@@ -96,7 +96,7 @@ void socket_server_udp(int *fd_sock,int port,char *ipchar)
 	memset(&ip_addr,0,sizeof(ip_addr));
 	ip_addr.sin_family=AF_INET;
 	ip_addr.sin_port=htons(port);
-	ip_addr.sin_addr.s_addr=inet_addr(ipchar);//INADDR_ANY
+	ip_addr.sin_addr.s_addr=htonl(INADDR_ANY);
 
 	int ret;
 	ret = bind(*fd_sock,(struct sockaddr*)&ip_addr,sizeof(struct sockaddr));
@@ -110,7 +110,7 @@ void socket_server_udp(int *fd_sock,int port,char *ipchar)
 
 
 
-void socket_client_udp(int *fd_sock/*,int port,char *ipchar,struct sockaddr_in *ip_addr*/)
+void socket_client_udp(int *fd_sock,int port,char *ipchar,struct sockaddr_in *ip_addr)
 {
 	*fd_sock = socket(AF_INET,SOCK_DGRAM,0);
 	if(-1 == *fd_sock)
@@ -119,11 +119,11 @@ void socket_client_udp(int *fd_sock/*,int port,char *ipchar,struct sockaddr_in *
 		exit(0);
 	}
 
-	/*memset(ip_addr,0,sizeof(struct sockaddr_in));
+	memset(ip_addr,0,sizeof(struct sockaddr_in));
 	(*ip_addr).sin_family=AF_INET;
 	(*ip_addr).sin_port=htons(port);
 	(*ip_addr).sin_addr.s_addr=inet_addr(ipchar);//INADDR_ANY;
-	*/
+
 }
 
 

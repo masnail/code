@@ -9,23 +9,16 @@
 #define FUNC_HEAD_H
 
 
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "head.h"
 
-
-void socket_server_tcp(int*,int,char*,int);
+void socket_server_tcp(int*,int,/*char*,*/int);
 
 void socket_accep(int,int*,struct sockaddr*);
 
 void socket_client_tcp(int*,int,char*);
 
-void socket_server_udp(int* ,int,char*);
+void socket_server_udp(int*,int);
 
-void socket_client_udp(int* /*,int,char*, struct sockaddr_in**/);
+void socket_client_udp(int*,int,char*, struct sockaddr_in*);
 
 #endif
