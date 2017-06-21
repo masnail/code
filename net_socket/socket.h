@@ -11,6 +11,20 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
+#ifdef __cplusplus
+extern "c" {
+#endif
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ 
+#ifdef __cplusplus
+}
+#endif
 
 
 int socket_server_tcp(int,/*char*,*/int);
