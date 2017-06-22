@@ -15,8 +15,30 @@
  *
  */
 
-int socket_server_tcp(int port,/*char *ipchar,*/int concnt)
+int socket_server_tcp()
 {
+
+    char ipchar[17];
+    char port[9];
+    char concnt[9];
+    memset(ipchar, sizeof(ipchar), 0);
+    memset(port, sizeof(port), 0);
+    memset(concnt, sizeof(concnt), 0);
+
+    //read configure file
+    FILE *fp = fopen("config", "r");
+
+    if(fp == NULL)
+    {
+	perror("read configure file error!");
+	exit(-1);
+    }
+    fgets(ipchar, sizeof(ipchar), fp);
+    fgets(port, sizeof(port), fp);
+    fgets(concnt, sizeof(concnt), fp);
+
+    fclose(fp);//close file
+
 	int fd_sock = socket(AF_INET,SOCK_STREAM,0);
 	if(-1 == fd_sock)
 	{
@@ -30,8 +52,8 @@ int socket_server_tcp(int port,/*char *ipchar,*/int concnt)
 	struct sockaddr_in ip_addr;
 	memset(&ip_addr,0,sizeof(ip_addr));
 	ip_addr.sin_family=AF_INET;
-	ip_addr.sin_port=htons(port);
-	ip_addr.sin_addr.s_addr=/*inet_addr(ipchar);*/htonl(INADDR_ANY);
+	ip_addr.sin_port=htons(atoi(port));
+	ip_addr.sin_addr.s_addr=inet_addr(ipchar);//htonl(INADDR_ANY);
 
 	int ret;
 	ret = bind(fd_sock,(struct sockaddr*)&ip_addr,sizeof(struct sockaddr));
@@ -42,7 +64,7 @@ int socket_server_tcp(int port,/*char *ipchar,*/int concnt)
 		exit(0);
 	}
 	
-	ret = listen(fd_sock,concnt);
+	ret = listen(fd_sock,atoi(concnt));
 	if(-1 == ret)
 	{
 		perror("listen");
@@ -63,8 +85,25 @@ int socket_server_tcp(int port,/*char *ipchar,*/int concnt)
  *
  */
 
-int  socket_client_tcp(int port,char *ipchar)
+int  socket_client_tcp()
 {
+    char ipchar[17];
+    char port[9];
+    memset(ipchar, sizeof(ipchar), 0);
+    memset(port, sizeof(port), 0);
+
+    //read configure file
+    FILE *fp = fopen("config", "r");
+
+    if(fp == NULL)
+    {
+	perror("read configure file error!");
+	exit(-1);
+    }
+    fgets(ipchar, sizeof(ipchar), fp);
+    fgets(port, sizeof(port), fp);
+    fclose(fp);//close file
+
 	int fd_sock = socket(AF_INET,SOCK_STREAM,0);
 	if(-1 == fd_sock)
 	{
@@ -78,7 +117,7 @@ int  socket_client_tcp(int port,char *ipchar)
 	struct sockaddr_in ip_addr;
 	memset(&ip_addr,0,sizeof(ip_addr));
 	ip_addr.sin_family=AF_INET;
-	ip_addr.sin_port=htons(port);
+	ip_addr.sin_port=htons(atoi(port));
 	ip_addr.sin_addr.s_addr=inet_addr(ipchar);
 	
 	int ret;
@@ -101,8 +140,25 @@ int  socket_client_tcp(int port,char *ipchar)
  *
  */
 
-int socket_server_udp(int port)
+int socket_server_udp(struct sockaddr_in *ip_addr)
 {
+    char ipchar[17];
+    char port[9];
+    memset(ipchar, sizeof(ipchar), 0);
+    memset(port, sizeof(port), 0);
+
+    //read configure file
+    FILE *fp = fopen("config", "r");
+
+    if(fp == NULL)
+    {
+	perror("read configure file error!");
+	exit(-1);
+    }
+    fgets(ipchar, sizeof(ipchar), fp);
+    fgets(port, sizeof(port), fp);
+    fclose(fp);//close file
+
 	int fd_sock = socket(AF_INET,SOCK_DGRAM,0);
 	if(-1 == fd_sock)
 	{
@@ -110,11 +166,11 @@ int socket_server_udp(int port)
 		exit(0);
 	}
 
-	struct sockaddr_in ip_addr;
-	memset(&ip_addr,0,sizeof(ip_addr));
-	ip_addr.sin_family=AF_INET;
-	ip_addr.sin_port=htons(port);
-	ip_addr.sin_addr.s_addr=htonl(INADDR_ANY);
+	//struct sockaddr_in ip_addr;
+	memset(ip_addr,0,sizeof(ip_addr));
+	ip_addr->sin_family=AF_INET;
+	ip_addr->sin_port=htons(atoi(port));
+	ip_addr->sin_addr.s_addr=inet_addr(ipchar);//htonl(INADDR_ANY);
 
 	int ret;
 	ret = bind(fd_sock,(struct sockaddr*)&ip_addr,sizeof(struct sockaddr));
@@ -138,8 +194,25 @@ int socket_server_udp(int port)
  *
  */
 
-int socket_client_udp(int port,char *ipchar,struct sockaddr_in *ip_addr)
+int socket_client_udp(struct sockaddr_in *ip_addr)
 {
+    char ipchar[17];
+    char port[9];
+    memset(ipchar, sizeof(ipchar), 0);
+    memset(port, sizeof(port), 0);
+
+    //read configure file
+    FILE *fp = fopen("config", "r");
+
+    if(fp == NULL)
+    {
+	perror("read configure file error!");
+	exit(-1);
+    }
+    fgets(ipchar, sizeof(ipchar), fp);
+    fgets(port, sizeof(port), fp);
+    fclose(fp);//close file
+
 	int fd_sock = socket(AF_INET,SOCK_DGRAM,0);
 	if(-1 == fd_sock)
 	{
@@ -149,11 +222,8 @@ int socket_client_udp(int port,char *ipchar,struct sockaddr_in *ip_addr)
 
 	memset(ip_addr,0,sizeof(struct sockaddr_in));
 	(*ip_addr).sin_family=AF_INET;
-	(*ip_addr).sin_port=htons(port);
+	(*ip_addr).sin_port=htons(atoi(port));
 	(*ip_addr).sin_addr.s_addr=inet_addr(ipchar);//INADDR_ANY;
 
 	return fd_sock;
-
 }
-
-

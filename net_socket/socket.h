@@ -14,25 +14,25 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#ifdef __cplusplus
-extern "c" {
-#endif
- 
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
- 
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+//#ifdef __cplusplus
+//}
+//#endif
 
 
-int socket_server_tcp(int,/*char*,*/int);
+int socket_server_tcp();
 
-int socket_client_tcp(int,char*);
+int socket_client_tcp();
 
-int socket_server_udp(int);
+int socket_server_udp(struct sockaddr_in*);
 
-int socket_client_udp(int,char*, struct sockaddr_in*);
+int socket_client_udp(struct sockaddr_in*);
 
 #endif
