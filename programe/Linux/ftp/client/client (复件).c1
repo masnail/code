@@ -39,7 +39,6 @@ void user_log(int fd,char *name)
 	int ret;
 	 char passwd[SIZE_BUFF],buff[SIZE_BUFF],salt[SIZE_MSG];
 	 char *serc=NULL;
-	 char succ[2] = "1\0";
 
 	memset(passwd,0,sizeof(passwd));
 	memset(buff,0,sizeof(buff));
@@ -47,35 +46,42 @@ void user_log(int fd,char *name)
 
 	printf("login as:");
 	scanf("%s",name);
-//	printf("%s@ password:",name);
-//	scanf("%s",passwd);
+	printf("%s@ password:",name);
+	scanf("%s",passwd);
 //	getPasswd(passwd);	
 	sprintf(buff,"log %s",name);
 	send_msg(fd,buff);//send
-//	send_msg(fd,passwd);//send
+	send_msg(fd,passwd);//send
 	
-//	ret=recv_msg(fd,buff);//recv serc and salt
+	ret=recv_msg(fd,buff);//recv serc and salt
 //	printf("valu=%s\n",buff);
+	if(ret>0)
+	{
+printf("test: %s\n",buff);
 		while(1)
-		{
-			
+		{	
+			if(0 ==strcmp('1',buff))
+				break;
 			memset(passwd,0,sizeof(passwd));
-			memset(buff,0,sizeof(buff));
-			printf("%s@ password:",name);
+			printf(" Access denied\n");
+			printf("%s@Linux password:",name);
+//			getPasswd(passwd);	
 			scanf("%s",passwd);
 			send_msg(fd,passwd);//send
-
-			recv_msg(fd,buff);
-//			printf("valu=%s\n",buff);
-
-			if(0 ==strcmp(succ,buff))
-				break;
-			printf(" Access denied\n");
 			write_user_log(name,"log-FAIL");
-			
-		}
-
-
+		}		
+		
+	}else{
+		while(1)
+		{
+			memset(passwd,0,sizeof(passwd));
+			printf(" Access denied\n");
+			printf("%s@Linux password:",name);
+			scanf("%s",passwd);
+			send_msg(fd,passwd);//send
+			write_user_log(name,"log-FAIL");
+		}		
+	}
 //		printf("[%s@Linux/ /]#> ",name);
 		printf("Welcome %s you !\n",name);
 		write_user_log(name,"log-SUCCESS");

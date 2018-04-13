@@ -73,8 +73,8 @@ void write_client_log(struct sockaddr_in addr,msgcom com)
 {
 	char path[SIZE_BUFF];
 	memset(path,0,sizeof(path));
-	sprintf(path,"/log/log/%s",com.com_param);
-	int ret=mkdir("/log/log",0666);
+	sprintf(path,"/server/log/%s",com.com_param);
+	int ret=mkdir("/server/log",0666);
 
 	int fdw=open(path,O_CREAT|O_WRONLY|O_APPEND|O_EXCL,0666);
 	char buff[SIZE_BUFF],timeb[21];
@@ -100,9 +100,9 @@ void write_client_com(msgcom com)
 {
 	char path[SIZE_BUFF];
 	memset(path,0,sizeof(path));
-	sprintf(path,"/log/com/%s",com.com_name);
-	int ret=mkdir("/log/com",0666);
-
+	sprintf(path,"/server/com/%s",com.com_name);
+	int ret=mkdir("/server/com",0666);
+printf("test log: ret = %d\n",ret);
 	int fdw=open(path,O_CREAT|O_WRONLY|O_APPEND|O_EXCL,0666);
 	char buff[SIZE_BUFF],timeb[21];
 	if(-1 == fdw)

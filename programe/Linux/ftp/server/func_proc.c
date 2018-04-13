@@ -34,9 +34,9 @@ void* func_handle(void *p)
 			sub_msg(buff,&com);
 //			printf("cur_path=%s\n",com.com_param);
 			if(0 == strcmp("log",com.com_com))
-			{
+			{write_client_log(nd.addr,com);
 				commd_adapte(client_fd,com);
-				write_client_log(nd.addr,com);
+				
 			}else{
 			//	memset(&com,0,sizeof(com));
 			//	sub_msg(buff,&com);

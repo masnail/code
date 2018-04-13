@@ -62,18 +62,19 @@ void socket_accept(int fd_sock,int *newfd,struct sockaddr *ip_addr)
 
 void socket_client_tcp(int *fd_sock,int port,char *ipchar)
 {
+
 	*fd_sock = socket(AF_INET,SOCK_STREAM,0);
 	if(-1 == *fd_sock)
 	{
 		perror("socket");
 		exit(0);
 	}
+//printf("fs:%d  ip: %s  -  port:%d\n",*fd_sock,ipchar,port);
 	struct sockaddr_in ip_addr;
 	memset(&ip_addr,0,sizeof(ip_addr));
 	ip_addr.sin_family=AF_INET;
 	ip_addr.sin_port=htons(port);
 	ip_addr.sin_addr.s_addr=inet_addr(ipchar);//INADDR_ANY;
-	
 	/* 端口重用 */
 	int ret;
 	ret = connect(*fd_sock,(struct sockaddr*)&ip_addr,sizeof(struct sockaddr));

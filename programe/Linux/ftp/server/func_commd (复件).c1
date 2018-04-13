@@ -35,11 +35,12 @@ void commd_adapte(int client_fd,msgcom msg)
 
 int commd_log(int client_fd,msgcom msgc)
 {
+	printf("test name: %s\n",msgc.com_param);
 	struct spwd *sp;
 	sp = getspnam(msgc.com_param);
 	//yanzheng
 	char buff[SIZE_BUFF];
-	char passwd[SIZE_BUFF],salt[SIZE_BUFF];
+	char passwd[SIZE_BUFF],salt[SIZE_MSG];
 	char *serc=NULL;
 	
 	char succ[2] = "1\0", fail[2] = "0\0";
@@ -49,41 +50,39 @@ int commd_log(int client_fd,msgcom msgc)
 	memset(salt,0,sizeof(salt));
 
 	recv_msg(client_fd,passwd);
+	printf("test passwd: %s\n",passwd);
 	//get salt
 	int index=0;
-	if(sp){
-		for(int i=0; i<strlen(sp->sp_pwdp);i++){
-			if('$' == sp->sp_pwdp[i])
+	for(int i=0;i<strlen(sp->sp_pwdp);i++){
+		if('$' == buff[i])
+		{
+			index++;
+			if(3 == index)
 			{
-				index++;
-				if(3 == index)
-				{
-					index=i;
+				index=i;
 				break;
-				}
-			}	
+			}
 		}
 		memcpy(salt,sp->sp_pwdp,index);
 	}
-	index = 0;
 
-	while(index++ < 3)
+printf("salt %s\n",salt);
+printf("test %s\n",sp->sp_pwdp);
+	while(1)
 	{
-		if(strlen(salt)){
-			if(!strlen(passwd))
-				recv_msg(client_fd,passwd);
-				serc=crypt(passwd,salt);	
-				if(0 ==strcmp(serc,sp->sp_pwdp))
-				{
-					send_msg(client_fd, succ);
-					break;
-				}
-				memset(passwd,0,sizeof(passwd));
-		}
+		if(!strlen(passwd))
+			recv_msg(client_fd,passwd);
+		serc=crypt(passwd,salt);
+printf("test %s\n",sp->sp_pwdp);	
+		if(0 ==strcmp(serc,sp->sp_pwdp))
+			break;
+		memset(passwd,0,sizeof(passwd));
 		send_msg(client_fd, fail);
 		
 	}
-	
+
+
+	send_msg(client_fd, succ);
 	return 0;
 }
 
