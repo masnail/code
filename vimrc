@@ -46,7 +46,7 @@ set nu
 set dictionary +=/usr/include
 
 "设置tab???
-set ts=8
+set ts=4
 
 "搜索的内容高???
 set hlsearch
@@ -131,10 +131,6 @@ set foldcolumn=2
 set foldmethod=indent 
 set foldlevel=3
 
-
-"AutoCommand 
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.[ch],*.cc,*.cpp,*.sh,*.java exec ":call SetTitle()" 
 "新建文件后，自动定位到文件末???
 autocmd BufNewFile * normal G 
 
