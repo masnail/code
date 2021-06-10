@@ -1,6 +1,3 @@
-"----------------------------"
-"--------Global Config-------"
-"----------------------------"
 syntax on
 set nu
 "colorscheme darkblue
