@@ -99,7 +99,9 @@ fi
 #fi
 
 function git_branch {
-branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
+branch_hash=`git rev-parse --short HEAD`
+branch_name=`git rev-parse --abbrev-ref HEAD`
+branch="${branch_name}-${branch_hash}"
 if [ "${branch}" != "" ];then
 if [ "${branch}" = "(no branch)" ];then
 branch="(`git rev-parse --short HEAD`...)"
