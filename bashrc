@@ -103,10 +103,10 @@ function git_branch {
     branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
     branch="${branch_name} - ${branch_hash}"
 
-	if [ "X-" == "X${branch}" ];then
+    if [[ "X" == "X${branch_name}" || "X" == "X${branch_hash}" ]];then
     	echo ""
-	else
-		echo " ($branch)"
+    else
+	echo " ($branch)"
     fi
 }
 
