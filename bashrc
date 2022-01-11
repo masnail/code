@@ -99,19 +99,14 @@ fi
 #fi
 
 function git_branch {
-    git_flag=`ls |grep .git`
-    if [ "X" == "X${git_flag}" ];then
+    branch_hash=`git rev-parse --short HEAD 2> /dev/null`
+    branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+    branch="${branch_name} - ${branch_hash}"
+
+	if [ "X-" == "X${branch}" ];then
     	echo ""
-    else
-        branch_hash=`git rev-parse --short HEAD`
-        branch_name=`git rev-parse --abbrev-ref HEAD`
-        branch="${branch_name}-${branch_hash}"
-        if [ "${branch}" != "" ];then
-        	if [ "${branch}" = "(no branch)" ];then
-        		branch="(`git rev-parse --short HEAD`...)"
-        	fi
-        	echo " ($branch)"
-        fi
+	else
+		echo " ($branch)"
     fi
 }
 
