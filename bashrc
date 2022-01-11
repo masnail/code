@@ -99,15 +99,20 @@ fi
 #fi
 
 function git_branch {
-branch_hash=`git rev-parse --short HEAD`
-branch_name=`git rev-parse --abbrev-ref HEAD`
-branch="${branch_name}-${branch_hash}"
-if [ "${branch}" != "" ];then
-if [ "${branch}" = "(no branch)" ];then
-branch="(`git rev-parse --short HEAD`...)"
-fi
-echo " ($branch)"
-fi
+    git_flag=`ls |grep .git`
+    if [ "X" == "X${git_flag}" ];then
+    	echo ""
+    else
+        branch_hash=`git rev-parse --short HEAD`
+        branch_name=`git rev-parse --abbrev-ref HEAD`
+        branch="${branch_name}-${branch_hash}"
+        if [ "${branch}" != "" ];then
+        	if [ "${branch}" = "(no branch)" ];then
+        		branch="(`git rev-parse --short HEAD`...)"
+        	fi
+        	echo " ($branch)"
+        fi
+    fi
 }
 
 export PS1='\[\e[1;36m\]\u\[\e[0m\]@\[\e[1;33m\]\h \[\e[1;31m\]\W\[\e[1;36m\]$(git_branch)\[\e[1;36m\]\$ \[\e[0m\]'
