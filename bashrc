@@ -110,7 +110,7 @@ function git_branch {
     fi
 }
 
-export PS1='\[\e[1;36m\]\u\[\e[0m\]@\[\e[1;33m\]\h \[\e[1;31m\]\W\[\e[1;36m\]$(git_branch)\[\e[1;36m\]\$ \[\e[0m\]'
+export PS1='\[\e[1;36m\]\u\[\e[0m\]@\[\e[1;33m\]\h \[\e[1;31m\]\W\[\e[1;36m\]$(git_branch)\[\e[1;36m\]\n\$ \[\e[0m\]'
 
 #export PS1="\[\e[32;1m\][\u@Ubuntu/ \W\a]#>\[\e[0m\]"
 #export PS1="\[\e[32;1m\][\u@Ubuntu/ \W]$>\[\e[0m\]"
